@@ -1,7 +1,7 @@
 import React from 'react'
-import {Avatar, Box, Button, Grid, Link, Paper, TextField, Typography} from "@mui/material";
+import {Avatar, Box, Button, Grid, Link, Paper, TextField} from "@mui/material";
 import '../styles/loginRegisterStyle.css'
-import {FacebookRounded, FacebookSharp, GitHub, Google, LinkedIn, LockOutlined, Twitter} from "@mui/icons-material";
+import {FacebookRounded, GitHub, Google, LockOutlined, Twitter} from "@mui/icons-material";
 const Login = () =>{
     return(
         <Grid>

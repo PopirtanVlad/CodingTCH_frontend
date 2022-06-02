@@ -7,9 +7,9 @@ const StatementArea = () => {
     return (
         <Grid columns={1} rowSpacing={3} container sx={{height: height, width: width/2}}>
             <Grid item>
-            <Card title="Hey" variant="outlined" sx={{textAlign: "left", height: height/10, width: width/2}}>
+            <Card variant="outlined" sx={{textAlign: "left", height: height/10, width: width/2}}>
                 <Typography variant="h3">
-                    HEY
+                    Problem.ti
                 </Typography>
             </Card>
             </Grid>

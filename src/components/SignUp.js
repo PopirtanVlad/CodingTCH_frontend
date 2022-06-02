@@ -9,9 +9,35 @@ import {
     TextField
 } from "@mui/material";
 import {CheckBox, PlusOneOutlined} from "@mui/icons-material";
-import React from "react";
+import React, {useState} from "react";
+import * as API_USERS from "../apis/SignInUpAPI";
 
 const SignUp = () =>{
+
+    const [registerFields, setRegisterFields] = useState({
+        displayName: "",
+        email: "",
+        password: "",
+        matchingPassword: ""
+    })
+
+    const handleFormChange = (input) => (e) =>{
+        e.preventDefault()
+        setRegisterFields(({...registerFields, [input]: e.target.value}))
+    }
+
+    const handleLogin = (e) =>{
+        e.preventDefault()
+        return API_USERS.login(registerFields, (result, status, err) => {
+            if(result != null && (status === 200 || status === 201)){
+                sessionStorage.setItem("AUTH_TOKEN", result.accessToken)
+            }else{
+                console.log(err)
+            }
+        })
+    }
+
+
     return(
         <Grid>
             <Paper elevation={10} style={{height:'55vh'}} className={`login_form`}>

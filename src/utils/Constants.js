@@ -13,8 +13,3 @@ export const cInitialText = `#include <stdio.h>
 int main() {
 
 }`
-
-
-export const problem = {
-
-}

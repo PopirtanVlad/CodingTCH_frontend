@@ -7,7 +7,7 @@ const endpoint = {
 }
 
 export function login(signInRequest, callback){
-    let request = new Request(HOST.BACKEND_API + endpoint.SIGN_IN, {
+    let request = new Request(HOST + endpoint.SIGN_IN, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

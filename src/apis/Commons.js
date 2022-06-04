@@ -1,6 +1,6 @@
-const HOST = {
-    BACKEND_API: `http://localhost:7799`
-}
+const HOST = `http://localhost:7799`
+
+const TokenHeader = "AUTH_TOKEN"
 
 function performRequest(request, callback) {
     fetch(request)
@@ -20,5 +20,6 @@ function performRequest(request, callback) {
 
 module.exports = {
     performRequest,
-    HOST
+    HOST,
+    TokenHeader
 }

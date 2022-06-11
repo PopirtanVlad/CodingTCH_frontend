@@ -2,7 +2,7 @@ import './App.css';
 import SignInUpContainer from "./containers/SignInUpContainer";
 import WelcomePageContainer from "./containers/WelcomePageContainer";
 import SeeProblemsContainer from "./containers/SeeProblemsContainer";
-import SubmitSolutionContainer from "./containers/SeeProblemsContainer";
+import SubmitSolutionContainer from "./containers/SubmitSolutionContainer";
 import {
     BrowserRouter as Router,
     Routes,
@@ -10,6 +10,7 @@ import {
     Link, Switch
 } from "react-router-dom";
 import SeeSubmissionsContainer from "./containers/SeeSubmissionsContainer";
+import AddProblemContainer from "./containers/AddProblemContainer";
 
 
 function App() {
@@ -38,9 +39,22 @@ function App() {
 
                         <Route
                             exact
+                            path='/problems/add'
+                            element = {AddProblemContainer()}
+                        />
+
+                        <Route
+                            exact
                             path = '/submissions'
                             element = {SeeSubmissionsContainer()}
                         />
+
+                        <Route
+                            exact
+                            path = '/problems/:title'
+                            element = {SubmitSolutionContainer()}
+                        />
+
                     </Routes>
                 </div>
             </Router>

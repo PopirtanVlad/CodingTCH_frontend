@@ -1,23 +1,29 @@
-import {Card, CardHeader, Grid, Typography} from "@mui/material";
+import {Box, Button, Card, CardHeader, Grid, Link, Paper, Typography} from "@mui/material";
 import useWindowDimensions from "../hooks/WindowDimensionHook";
+import {useLocation} from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import {AddBox, ArrowBack} from "@mui/icons-material";
 
-const StatementArea = () => {
-    const {height, width} = useWindowDimensions()
+const StatementArea = _ => {
+
+    const {state} = useLocation()
 
     return (
-        <Grid columns={1} rowSpacing={3} container sx={{height: height, width: width/2}}>
-            <Grid item>
-            <Card variant="outlined" sx={{textAlign: "left", height: height/10, width: width/2}}>
-                <Typography variant="h3">
-                    Problem.ti
-                </Typography>
+        <Paper sx={{width: "50vw", height: "100vh"}}>
+            <IconButton component={Link} to="/problems" size="large"><ArrowBack/></IconButton>
+            <Typography variant="h3">{state.problem.title}</Typography>
+            <Typography variant={"h6"}>{state.problem.difficulty}</Typography>
+            <Card variant="outlined" sx={{textAlign: "left", width: "50vw"}}>
+                <Typography variant="body1">{state.problem.statement}</Typography>
             </Card>
-            </Grid>
-            <Grid item sx={{width: width/2}}>YES</Grid>
-            <Grid item>YES</Grid>
-        </Grid>
+            <Card>
+                <Typography variant="subtitle1">Example:</Typography>
+            <Box variant="outlined" sx={{backgroundColor: "#D3D3D3"}}>Input: {state.problem.exampleInput}
+                <br/> Output: {state.problem.exampleOutput}</Box>
+            </Card>
+        </Paper>
     );
 
 }
 
-export default  StatementArea
+export default StatementArea

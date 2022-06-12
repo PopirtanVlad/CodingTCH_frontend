@@ -8,7 +8,8 @@ import useWindowDimensions from "../hooks/WindowDimensionHook";
 import {useState} from "react";
 import {cInitialText, javaInitialText, pythonInitialText} from "../utils/Constants";
 import ScrollLock from 'react-scrolllock'
-
+import {useLocation} from "react-router-dom";
+import * as SUMBSISSION_API from '../apis/SubmissionsAPI'
 
 
 
@@ -17,12 +18,28 @@ const CodeArea = () => {
     const [textEditorInitialText, setTextEditorInitialText] = useState(javaInitialText)
     const [language, setLanguage] = useState(java())
     const [languageSelect, setLanguageSelect] = useState("Java")
+    const {state} = useLocation()
+
+    const [submissionDetails, setSubmissionsDetails] = useState(
+        {
+            programmingLanguage: "Java",
+            problemID: state.problem.id,
+            solutionText: javaInitialText
+        }
+    )
+
     function submitSolution(){
-        console.log("submit")
+        return SUMBSISSION_API.sendSubmission(submissionDetails, (result, status, err) => {
+            if(result != null && (status === 200 || status === 201)){
+                console.log(result)
+            }else{
+                console.log(err)
+            }
+        })
     }
 
-
     const changeEditorText = e => {
+        setSubmissionsDetails(({...submissionDetails, programmingLanguage: e.target.value}))
         setLanguageSelect(e.target.value)
         switch (e.target.value){
             case "Python":
@@ -52,12 +69,15 @@ const CodeArea = () => {
                         height="97vh"
                         theme="dark"
                         extensions={[language]}
+                        onChange={(editor, data, value) => {
+                            setSubmissionsDetails(({...submissionDetails, solutionText: editor}))
+                        }}
                     />
             </Paper>
             <Paper elevation={1}>
                 <Grid container direction={"row"} sx={{width: 700, height: "3vh", textAlign: "left"}}>
                     <FormControl size="small">
-                        <Select sx={{borderRadius: 0, width: 100, height: "3vh"}} value={languageSelect}  onChange={changeEditorText}>
+                        <Select sx={{borderRadius: 0, width: 100, height: "3vh"}} value={languageSelect} onChange={changeEditorText}>
                             <MenuItem value={"C"}>C</MenuItem>
                             <MenuItem value={"Java"}>Java</MenuItem>
                             <MenuItem value={"Python"}>Python</MenuItem>

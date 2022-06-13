@@ -2,7 +2,7 @@ import {Box, Button, Card, CardHeader, Grid, Link, ListItem, makeStyles, Paper, 
 import {useLocation, useNavigate} from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import {AddBox, ArrowBack} from "@mui/icons-material";
-import * as CONSTANTS from '../utils/Constants'
+import * as CONSTANTS from '../../utils/Constants'
 import List from "@mui/material/List";
 
 

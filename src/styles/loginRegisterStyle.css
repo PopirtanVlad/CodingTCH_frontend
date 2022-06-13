@@ -13,12 +13,7 @@
     width: 300px;
 }
 
-.avatar_style{
-    background-color: green;
-}
 
-.button_style{
-    padding: 10px;
-    margin: 20px auto;
-
+.button_style:hover{
+    backgroundColor: #1A2930;
 }

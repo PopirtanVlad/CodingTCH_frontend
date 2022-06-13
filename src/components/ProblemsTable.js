@@ -23,7 +23,6 @@ const ProblemsTable = () => {
         async function fetchData() {
             API_PROBLEMS.getAllProblems((result, status, err) => {
                 if (result != null && (status === 200 || status === 201)) {
-                    console.log(result)
                     setProblems(result)
                 } else {
                     console.log(err)
@@ -36,7 +35,7 @@ const ProblemsTable = () => {
 
     const StyledTableCell = styled(TableCell)(({theme}) => ({
         [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
+            backgroundColor: "#1A2930",
             color: theme.palette.common.white,
             padding: "0px 16px"
         },
@@ -75,7 +74,7 @@ const ProblemsTable = () => {
     }
 
     return (
-        <TableContainer component={Paper} sx={{height: "85vh", width: "165vh"}}>
+        <TableContainer component={Paper} sx={{height: "85vh", width: "80vw"}}>
             <Table sx={{overflow: "scroll"}} aria-label="simple table">
                 <TableHead variant="outlined">
                     <StyledTableRow>

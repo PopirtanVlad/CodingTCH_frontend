@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import SeeSubmissionsContainer from "./containers/SeeSubmissionsContainer";
 import AddProblemContainer from "./containers/AddProblemContainer";
+import SubmissionDetailsContainer from "./containers/SubmissionDetailsContainer";
 
 
 function App() {
@@ -53,6 +54,12 @@ function App() {
                             exact
                             path = '/problems/:title'
                             element = {SubmitSolutionContainer()}
+                        />
+
+                        <Route
+                            exact
+                            path = '/submissions/:id'
+                            element = {SubmissionDetailsContainer()}
                         />
 
                     </Routes>

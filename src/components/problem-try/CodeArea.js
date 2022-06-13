@@ -2,14 +2,13 @@ import CodeMirror from '@uiw/react-codemirror';
 import {java} from '@codemirror/lang-java';
 import {python} from '@codemirror/lang-python'
 import {cpp} from '@codemirror/lang-cpp'
-import {Box, Button, FormControl, Grid, InputLabel, Paper, Select} from "@mui/material";
+import {Button, FormControl, Grid, Paper, Select} from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import useWindowDimensions from "../hooks/WindowDimensionHook";
 import {useState} from "react";
-import {cInitialText, javaInitialText, pythonInitialText} from "../utils/Constants";
+import {cInitialText, javaInitialText, pythonInitialText} from "../../utils/Constants";
 import ScrollLock from 'react-scrolllock'
 import {useLocation} from "react-router-dom";
-import * as SUMBSISSION_API from '../apis/SubmissionsAPI'
+import * as SUMBSISSION_API from '../../apis/SubmissionsAPI'
 
 
 

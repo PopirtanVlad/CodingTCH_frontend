@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Box, Paper, Tab, Tabs, Typography} from "@mui/material";
-import SignUp from "../components/SignUp";
-import Login from "../components/Login";
+import SignUp from "../components/sign-in-up/SignUp";
+import Login from "../components/sign-in-up/Login";
 
 const SignInUpContainer = () =>{
 

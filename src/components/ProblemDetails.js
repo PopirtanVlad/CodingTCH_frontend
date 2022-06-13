@@ -58,7 +58,6 @@ const ProblemDetails = () => {
                     }
                 })
             } else {
-                console.log("HEY")
             }
         })
 

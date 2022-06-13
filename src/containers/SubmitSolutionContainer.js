@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Box from "@mui/material/Box";
-import StatementArea from "../components/StatementArea";
-import CodeArea from "../components/CodeArea";
+import StatementArea from "../components/problem-try/StatementArea";
+import CodeArea from "../components/problem-try/CodeArea";
 import React from 'react'
 import {Grid} from "@mui/material";
 

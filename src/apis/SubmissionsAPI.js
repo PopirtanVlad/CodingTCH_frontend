@@ -7,7 +7,19 @@ const endpoints = {
 }
 
 export function getAllSubmissions(callback){
-    let request = new Request(HOST + +submissionsBase + endpoints.ALL_SUBMISSIONS, {
+    let request = new Request(HOST + submissionsBase + endpoints.ALL_SUBMISSIONS, {
+        method: 'GET',
+        headers: {
+            'Authorization': "Bearer " + sessionStorage.getItem(TokenHeader),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    });
+    RestApiClient.performRequest(request, callback)
+}
+
+export function getSubmissionByID(id, callback){
+    let request = new Request(HOST + submissionsBase + '/' + id, {
         method: 'GET',
         headers: {
             'Authorization': "Bearer " + sessionStorage.getItem(TokenHeader),

@@ -21,7 +21,6 @@ const SubmissionTable  = () => {
         async function fetchData(){
             API_SUBMISSIONS.getAllSubmissions((result, status, err) => {
                 if(result != null && (status === 200 || status === 201)){
-                    console.log(result)
                     setSubmissions(result)
                 }else{
                     console.log(err)
@@ -31,41 +30,70 @@ const SubmissionTable  = () => {
         fetchData();
     }, [])
 
-    function rowColor (difficulty) {
-        switch (difficulty) {
-            case 0:
-                return "#FF0000"
+    const StyledTableRow = styled(TableRow)(({theme}) => ({
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+            height: 60
+
+        },
+        '&:last-child td, &:last-child th': {
+            border: 0,
+            height: 60
+        },
+    }));
+
+    const StyledTableCell = styled(TableCell)(({theme}) => ({
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: "#1A2930",
+            color: theme.palette.common.white,
+            padding: "0px 16px"
+        },
+        [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+            padding: "0px 16px"
+        },
+    }));
+
+
+    function rowColor (status) {
+        switch (status) {
+            case "FAILED":
+                return "#d15050"
                 break
-            case 1:
-                return "#FFFF00"
+            case "IN_PROGRESS":
+                return "#e9e937"
                 break
-            case 2:
-                return "#00FF00"
+            case "SUCCESS":
+                return "#43da43"
                 break
             default:
-                return "#000000"
+                return "#FFFFFF"
         }
     }
 
     return (
-        <TableContainer component={Paper} sx={{height: "85vh",width: "165vh"}}>
+        <TableContainer component={Paper} sx={{height: "85vh",width: "80vw"}}>
             <Table sx={{ overflow: "scroll"}} aria-label="simple table">
                 <TableHead variant="outlined">
-                    <TableRow>
-                        <TableCell>Title</TableCell>
-                        <TableCell>Difficulty</TableCell>
-                        <TableCell/>
-                    </TableRow>
+                    <StyledTableRow>
+                        <StyledTableCell padding='none' align="left">Submit Date</StyledTableCell>
+                        <StyledTableCell padding='none' align="left">Submit Time</StyledTableCell>
+                        <StyledTableCell padding='none' align="left">Problem</StyledTableCell>
+                        <StyledTableCell padding="none" align="left">Status</StyledTableCell>
+                        <StyledTableCell/>
+                    </StyledTableRow>
                 </TableHead>
                 <TableBody>
                     {submissions.map((submission) => (
                         <TableRow
                             key={submission.id}
-                            sx={{'&:last-child td, &:last-child th': { border: 0 }, lineHeight: "14px"}}
+                            sx={{'&:last-child td, &:last-child th': { border: 0 }, backgroundColor: rowColor(submission.submissionStatus), lineHeight: "14px"}}
                         >
-                            <TableCell padding='none' align="left">{submission.date}</TableCell>
-                            <TableCell padding='none' align="left">{submission.difficulty}</TableCell>
-                            <TableCell padding='none' align="center"><Button variant="outlined" component={Link} to="/submission">Try</Button></TableCell>
+                            <TableCell padding='none' align="left">{submission.uploadDate}</TableCell>
+                            <TableCell padding='none' align="left">{submission.uploadTime}</TableCell>
+                            <TableCell padding='none' align="left">{submission.problemTitle}</TableCell>
+                            <TableCell padding='none' align="left">{submission.submissionStatus.replace('_',' ')}</TableCell>
+                            <TableCell padding='none' align="center"><Button variant="outlined" component={Link} to={`/submissions/${submission.id}`}>View</Button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

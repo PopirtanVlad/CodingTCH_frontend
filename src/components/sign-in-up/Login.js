@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import {Avatar, Box, Button, Grid, Paper, TextField} from "@mui/material";
-import '../styles/loginRegisterStyle.css'
-import {FacebookRounded, GitHub, Google, LockOutlined, Twitter} from "@mui/icons-material";
-import * as API_USERS from "../apis/SignInUpAPI"
+import '../../styles/loginRegisterStyle.css'
+import {FacebookRounded, GitHub, Google, LockOpen, LockOutlined, Twitter} from "@mui/icons-material";
+import * as API_USERS from "../../apis/SignInUpAPI"
 import {Link} from 'react-router-dom'
-import {TokenHeader} from "../apis/Commons";
+import {TokenHeader} from "../../apis/Commons";
 
 const Login = (props) =>{
 
@@ -31,23 +31,16 @@ const Login = (props) =>{
     return(
         <Grid>
             <Paper elevation={10} className={`login_form`}>
+                <br/>
                 <Grid align="center">
-                    <Avatar className={'avatar_style'}><LockOutlined/></Avatar>
+                    <Avatar sx={{color: "#1A2930", backgroundColor: "#F7CE3E"}}><LockOpen/></Avatar>
                     <h2>Sign in</h2>
                 </Grid >
                 <TextField onChange={handleFormChange("email")} required={true} label="Email" placeholder="Enter email" variant="standard" fullWidth={true} />
                 <TextField onChange={handleFormChange("password")} required={true} type="password" label="Password" placeholder="Enter password" variant="standard" fullWidth={true} />
-                <br/>
+
                 <Button component={Link} to="/problems" variant="contained" fullWidth={true} className={'button_style'}
-                        onClick={handleLogin}>Sign in</Button>
-                <br/>
-                <Grid spacing={3} align="left">
-                    {/*<Link href="#" color="inherit" align="left"*/}
-                    {/*    onClick={() => {*/}
-                    {/*        console.info("I'm a link")*/}
-                    {/*}}*/}
-                    {/*>Forgot password?</Link>*/}
-                </Grid>
+                        onClick={handleLogin} sx={{backgroundColor: "#1A2930", padding: "10ox", margin: "30px auto"}}>Sign in</Button>
                 <br/>
                 <Box sx={{textAlign: 'center'}}>Or you can sign in with</Box>
 

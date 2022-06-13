@@ -17,3 +17,15 @@ export function login(signInRequest, callback){
     });
     RestApiClient.performRequest(request, callback)
 }
+
+export function signUp(signUpRequest, callback){
+    let request = new Request(HOST + endpoint.SIGN_UP, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(signUpRequest)
+    });
+    RestApiClient.performRequest(request, callback)
+}

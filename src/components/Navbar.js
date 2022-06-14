@@ -35,7 +35,10 @@ const NavBar = () => {
                     <Typography variant="h6" noWrap component="div">
                         Clipped drawer
                     </Typography>
-                    <IconButton onClick={leavePage} size="large"><ExitToApp/></IconButton>
+                    <Box sx={{display: 'flex', marginLeft: "85vw"}}>
+                        <Typography sx={{paddingTop: 1.5}}>{sessionStorage.getItem("DISPLAY_NAME")}</Typography>
+                        <IconButton sx={{color: "white"}} onClick={leavePage} size="large"><ExitToApp/></IconButton>
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Drawer

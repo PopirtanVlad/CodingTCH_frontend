@@ -20,10 +20,12 @@
     "@uiw/react-codemirror": "^4.7.0",
     "@uiw/react-textarea-code-editor": "^2.0.2",
     "react": "^18.1.0",
+    "react-custom-popup": "^1.2.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-scrolllock": "^5.0.1",
+    "react-toastify": "^9.0.4",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4"
   },

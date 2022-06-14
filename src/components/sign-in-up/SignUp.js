@@ -11,9 +11,13 @@ import {
 import {AppRegistration, CheckBox, PlusOneOutlined} from "@mui/icons-material";
 import React, {useState} from "react";
 import * as API_USERS from "../../apis/SignInUpAPI";
+import Typography from "@mui/material/Typography";
+import {useNavigate} from "react-router-dom";
+import {TokenHeader} from "../../apis/Commons";
 
 const SignUp = () =>{
 
+    const [errorMessage, setErrorMesage] = useState("")
     const [registerFields, setRegisterFields] = useState({
         displayName: "",
         email: "",
@@ -26,12 +30,20 @@ const SignUp = () =>{
         setRegisterFields(({...registerFields, [input]: e.target.value}))
     }
 
+    let navigator = useNavigate()
+
     const handleSignup = (e) =>{
         return API_USERS.signUp(registerFields, (result, status, err) => {
             if(result != null && (status === 200 || status === 201)){
-                console.log("SUCCESS")
+                window.location.reload(false);
             }else{
-                console.log(err)
+                if(err.message != null) {
+                    setErrorMesage(err.message)
+                }
+                else{
+                    setErrorMesage("Unexpected error occurred")
+                }
+
             }
         })
     }
@@ -59,6 +71,7 @@ const SignUp = () =>{
                         onClick={() => {
                             handleSignup()
                         }}>Sign up</Button>
+                <Typography align="center" sx={{color: "red"}}>{errorMessage}</Typography>
             </Paper>
         </Grid>
     )

@@ -21,11 +21,13 @@ const CodeArea = () => {
 
     const [submissionDetails, setSubmissionsDetails] = useState(
         {
+            problemTitle: window.location.pathname.split('/')[2],
             programmingLanguage: "Java",
-            problemID: state.problem.id,
             solutionText: javaInitialText
         }
     )
+
+
 
     function submitSolution(){
         return SUMBSISSION_API.sendSubmission(submissionDetails, (result, status, err) => {

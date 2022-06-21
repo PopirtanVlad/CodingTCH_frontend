@@ -33,7 +33,7 @@ const NavBar = () => {
             <AppBar position="fixed" sx={{ backgroundColor: "#1A2930", zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
                     <Typography variant="h6" noWrap component="div">
-                        Clipped drawer
+                        CodingTCH
                     </Typography>
                     <Box sx={{display: 'flex', marginLeft: "85vw"}}>
                         <Typography sx={{paddingTop: 1.5}}>{sessionStorage.getItem("DISPLAY_NAME")}</Typography>

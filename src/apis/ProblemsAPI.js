@@ -28,3 +28,15 @@ export function saveProblem(problem, callback){
     })
     RestApiClient.performRequest(request, callback)
 }
+
+export function getProblemByTitle(title, callback){
+    let request = new Request(HOST + problemsBase + '/' + title, {
+        method: 'GET',
+        headers: {
+            'Authorization': "Bearer " + sessionStorage.getItem(TokenHeader),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    });
+    RestApiClient.performRequest(request, callback)
+}

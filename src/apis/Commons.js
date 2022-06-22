@@ -1,4 +1,4 @@
-const HOST = `http://localhost:7799`
+const HOST = `http://localhost:8080`
 
 const TokenHeader = "AUTH_TOKEN"
 

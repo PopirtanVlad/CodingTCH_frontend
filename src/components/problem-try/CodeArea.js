@@ -7,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import {useState} from "react";
 import {cInitialText, javaInitialText, pythonInitialText} from "../../utils/Constants";
 import ScrollLock from 'react-scrolllock'
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import * as SUMBSISSION_API from '../../apis/SubmissionsAPI'
 
 
@@ -17,7 +17,12 @@ const CodeArea = () => {
     const [textEditorInitialText, setTextEditorInitialText] = useState(javaInitialText)
     const [language, setLanguage] = useState(java())
     const [languageSelect, setLanguageSelect] = useState("Java")
-    const {state} = useLocation()
+
+    let navigate = useNavigate()
+    const leavePage = () => {
+        navigate("/problems")
+    }
+
 
     const [submissionDetails, setSubmissionsDetails] = useState(
         {
@@ -32,7 +37,7 @@ const CodeArea = () => {
     function submitSolution(){
         return SUMBSISSION_API.sendSubmission(submissionDetails, (result, status, err) => {
             if(result != null && (status === 200 || status === 201)){
-                console.log(result)
+                leavePage()
             }else{
                 console.log(err)
             }

@@ -1,14 +1,16 @@
 import {
     Button,
-    FormControl, Input, Link,
+    FormControl, Link,
     Paper,
     TextField
 } from "@mui/material";
+import Alert from 'react-popup-alert'
 import React, {useState} from 'react'
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import * as API_PROBLEMS from "../apis/ProblemsAPI";
 import * as API_TESTCASES from "../apis/TestCasesAPI";
+import {useNavigate} from "react-router-dom";
 
 const ProblemDetails = () => {
 
@@ -26,7 +28,6 @@ const ProblemDetails = () => {
             label: 'Hard'
         }
     ]
-
     const [problemDetails, setProblemDetails] = useState({
         id: "",
         title: "",
@@ -37,6 +38,11 @@ const ProblemDetails = () => {
         memoryLimit: 0,
         timeLimit: 0,
     })
+    const [errorMessage, setErrorMesage] = useState("")
+    let navigate = useNavigate()
+    const leavePage = () => {
+        navigate("/problems")
+    }
 
     const [testFiles, setTestFiles] = useState([])
 
@@ -52,12 +58,13 @@ const ProblemDetails = () => {
                 }
                 API_TESTCASES.uploadTestCases(formData, (result, status, err) => {
                     if (result != null && (status === 200 || status === 201)) {
-                        console.log(result)
+                        leavePage()
                     } else {
-                        console.log(err)
+                       setErrorMesage(err.message)
                     }
                 })
             } else {
+                setErrorMesage(err.message)
             }
         })
 
@@ -117,12 +124,12 @@ const ProblemDetails = () => {
                         Upload
                     </Button>
                 </label>
+                <Typography align="left" sx={{color:"red"}}>{errorMessage}</Typography>
                 <br/>
                 <Button type="submit" onClick={saveProblem} component={Link} to={{pathname: '/problems'}}
                         variant="outlined" sx={{borderColor: "gray", color: "black", width: "10vw"}}>Save</Button>
             </FormControl>
         </Paper>
-
     )
 }
 

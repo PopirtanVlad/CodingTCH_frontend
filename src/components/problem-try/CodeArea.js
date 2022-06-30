@@ -45,8 +45,10 @@ const CodeArea = () => {
     }
 
     const changeEditorText = e => {
-        setSubmissionsDetails(({...submissionDetails, programmingLanguage: e.target.value}))
+        console.log(e.target.value)
+        setSubmissionsDetails(submissionDetails.programmingLanguage= e.target.value)
         setLanguageSelect(e.target.value)
+        console.log(submissionDetails)
         switch (e.target.value){
             case "Python":
                 setTextEditorInitialText(pythonInitialText)

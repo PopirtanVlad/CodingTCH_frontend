@@ -11,3 +11,11 @@ spec:
         nodePort: 31000
     selector:
         app: codingtch-front-end
+
+
+
+
+
+
+
+

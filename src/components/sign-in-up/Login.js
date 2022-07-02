@@ -3,10 +3,10 @@ import {Avatar, Box, Button, Grid, Paper, TextField} from "@mui/material";
 import '../../styles/loginRegisterStyle.css'
 import {FacebookRounded, GitHub, Google, LockOpen, Twitter} from "@mui/icons-material";
 import * as API_USERS from "../../apis/SignInUpAPI"
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useSearchParams} from 'react-router-dom'
 import {TokenHeader} from "../../apis/Commons";
-import {usePopup, ToastPosition, DialogType} from 'react-custom-popup'
 import Typography from "@mui/material/Typography";
+import {useEffect} from 'react';
 
 const Login = () =>{
     const [errorMessage, setErrorMesage] = useState("")
@@ -14,6 +14,27 @@ const Login = () =>{
         email: "",
         password: ""
     })
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        async function fetchData() {
+            const token = searchParams.get("token")
+            if(token != null) {
+                sessionStorage.setItem(TokenHeader,token)
+                return API_USERS.jwtLogin((result, status, err) => {
+                    if(result != null && (status === 200 || status === 201)){
+                        console.log(result)
+                        sessionStorage.setItem("DISPLAY_NAME", result.displayName)
+                        navigate("/problems")
+                    }else{
+                        setErrorMesage(err.message)
+                    }
+                })
+            }
+        }
+
+        fetchData();
+    }, [])
 
     let navigate = useNavigate()
 
@@ -54,12 +75,7 @@ const Login = () =>{
                 <Box sx={{textAlign: 'center'}}>Or you can sign in with</Box>
 
                 <div style={{padding: 15}}>
-                <Grid fullWidth={true} container >
-                    <Grid align="center" item xs={3}><Avatar style={{background:"#3b5998"}}><FacebookRounded/></Avatar></Grid>
-                    <Grid align="center" item xs={3}><Avatar style={{background:"#BB001B"}}><Google/></Avatar></Grid>
-                    <Grid align="center" item xs={3}><Avatar style={{background:"black"}}><GitHub/></Avatar></Grid>
-                    <Grid align="center" item xs={3}><Avatar style={{background:"#1DA1F2"}}><Twitter/></Avatar></Grid>
-                </Grid>
+                    <Grid align="center" item xs={3}><a href="http://localhost:8080/oauth2/authorization/google?redirect_uri=http://localhost:3000"><Avatar style={{background:"#BB001B"}}><Google/></Avatar></a></Grid>
                 </div>
             </Paper>
         </Grid>

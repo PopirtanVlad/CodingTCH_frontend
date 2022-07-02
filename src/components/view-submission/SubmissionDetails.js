@@ -161,6 +161,7 @@ const SubmissionDetails = () => {
                                     <TableCell sx={{color: "white"}}>Memory Used</TableCell>
                                     <TableCell sx={{color: "white"}}align={"left"}>Time Spent</TableCell>
                                     <TableCell sx={{color: "white"}}>Status</TableCell>
+                                    <TableCell sx={{color: "white"}}>Error</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -168,6 +169,7 @@ const SubmissionDetails = () => {
                                     <TableCell >{testResult.testMemoryUsed}</TableCell>
                                     <TableCell  align={"left"}>{testResult.testTimeElapsed}</TableCell>
                                     <TableCell >{returnTestResult(testResult.testStatus)}</TableCell>
+                                    <TableCell>{testResult.errorMessage}</TableCell>
                                 </TableRow>
                             </TableBody>
                         </Table>

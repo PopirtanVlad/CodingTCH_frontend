@@ -107,9 +107,9 @@ const ProblemDetails = () => {
                 <Typography variant="h5">Example Output</Typography>
                 <TextField onChange={handleFormChange("exampleOutput")} placeholder="Output: z"></TextField>
                 <Typography variant="h5">Memory Limit</Typography>
-                <TextField onChange={handleFormChange("memoryLimit")}></TextField>
+                <TextField onChange={handleFormChange("memoryLimit")} placeholder="In kilobytes"></TextField>
                 <Typography variant="h5">Time Limit</Typography>
-                <TextField onChange={handleFormChange("timeLimit")} placeholder="In seconds"></TextField>
+                <TextField onChange={handleFormChange("timeLimit")} placeholder="In milliseconds"></TextField>
                 <Typography variant="h5">Test files</Typography>
                 <input
                     onChange={handleFormChange("tests")}

@@ -62,13 +62,6 @@ const SignUp = () =>{
                 <TextField required={true} onChange={handleFormChange("password")} type="password" label="Password" placeholder="Enter password" variant="standard" fullWidth={true} />
                 <TextField required={true} onChange={handleFormChange("matchingPassword")} type="password" label="Confirm password" placeholder="Enter password" variant="standard" fullWidth={true} />
                 <br/><br/>
-                <FormLabel component="legend">You're creating this account as a</FormLabel>
-                <RadioGroup aria-label="role" name="role" style={{display: 'initial'}}>
-                    <FormControlLabel value="User" control={<Radio/>} label="User"/>
-                    <FormControlLabel value="Administrator" control={<Radio/>} label="Administrator"/>
-                </RadioGroup>
-                <TextField onChange={handleFormChange("adminCode")} type="password" label="Enter admin code" placeholder="xxxx-xxxx" variant="standard" fullWidth={true} />
-
                 <Button type="Submit" variant="contained" fullWidth={true} sx={{backgroundColor: "#1A2930", padding: "10ox", margin: "20px auto"}}
                         onClick={() => {
                             handleSignup()
